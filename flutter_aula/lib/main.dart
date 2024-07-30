@@ -6,11 +6,11 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Aula'),
+      home: const Home(title: 'aula',),
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blueAccent
+          seedColor: Colors.purpleAccent
         )
       )
     ),
