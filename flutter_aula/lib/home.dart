@@ -16,21 +16,22 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   //bool cbIsSelected_1 = false;
   _HomeState();
+  String resposta = '';
 
-  final List<CheckBoxOption> months = [
-    CheckBoxOption(title: 'Janeiro'),
-    CheckBoxOption(title: 'Fevereiro'),
-    CheckBoxOption(title: 'Março'),
-    CheckBoxOption(title: 'Abril'),
-    CheckBoxOption(title: 'Maio'),
-    CheckBoxOption(title: 'Junho'),
-    CheckBoxOption(title: 'Julho'),
-    CheckBoxOption(title: 'Agosto'),
-    CheckBoxOption(title: 'Setembro'),
-    CheckBoxOption(title: 'Outubro'),
-    CheckBoxOption(title: 'Novembro'),
-    CheckBoxOption(title: 'Dezembro'),
-  ];
+  //final List<CheckBoxOption> months = [
+  //CheckBoxOption(title: 'Janeiro'),
+  //CheckBoxOption(title: 'Fevereiro'),
+  //CheckBoxOption(title: 'Março'),
+  //CheckBoxOption(title: 'Abril'),
+  //CheckBoxOption(title: 'Maio'),
+  //CheckBoxOption(title: 'Junho'),
+  //CheckBoxOption(title: 'Julho'),
+  //CheckBoxOption(title: 'Agosto'),
+  //CheckBoxOption(title: 'Setembro'),
+  //CheckBoxOption(title: 'Outubro'),
+  //CheckBoxOption(title: 'Novembro'),
+  //CheckBoxOption(title: 'Dezembro'),
+  //];
 
   @override
   Widget build(BuildContext context) {
@@ -39,30 +40,62 @@ class _HomeState extends State<Home> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Aula'),
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-        child: ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: months.length,
-          itemBuilder: (_, index) {
-            return CheckBoxCustomWidget(item: months[index]);
-          },
-        ),
+      body: Row(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Radio(
+                value: 'sim', 
+                groupValue: resposta, 
+                onChanged: (value) {
+                  setState(() {
+                    resposta = value.toString();
+                  });
+                }),
+              const Text('Sim'),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Radio(
+                value: 'não', 
+                groupValue: resposta, 
+                onChanged: (value) {
+                  setState(() {
+                    resposta = value.toString();
+                  });
+                }),
+              const Text('Não'),
+            ],
+          )
+        ],
       ),
+      
       floatingActionButton: FloatingActionButton(
-        onPressed: printSelectedMonths,
+        onPressed: () {},
         child: const Icon(Icons.add),
       ),
     );
   }
 
-  void printSelectedMonths() {
-    List<CheckBoxOption> selectedMonths =
-        List.from(months.where((item) => item.checked));
+  //void printSelectedMonths() {
+    //List<CheckBoxOption> selectedMonths =
+        //List.from(months.where((item) => item.checked));
 
-    selectedMonths.forEach((item) {
-      print(item.title);
-    });
-  }
+    //selectedMonths.forEach((item) {
+      //print(item.title);
+    //});
+  //}
 }
+
+//Container(
+        //padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+        //child: ListView.builder(
+          //shrinkWrap: true,
+          //physics: const NeverScrollableScrollPhysics(),
+          //itemCount: months.length,
+          //itemBuilder: (_, index) {
+            //return CheckBoxCustomWidget(item: months[index]);
+          //},
+        //),
+      //),
